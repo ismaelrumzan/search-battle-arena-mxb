@@ -48,7 +48,7 @@ export class MixedBreadSearchProvider implements SearchProvider {
             | ScoredVideoURLInputChunk,
           index: number
         ) => {
-          const description = item.text;
+          const description = (item.generated_metadata as { description: string }).description;
           const headingContext = Array.isArray(
             item.generated_metadata?.heading_context
           )
@@ -81,14 +81,6 @@ export class MixedBreadSearchProvider implements SearchProvider {
               (h: { text: string; level: number }) => h.level === 2
             )?.text || "";
           const anchor = slugify(secondaryTitle, { lower: true });
-          const sectionTitle =
-            chunkHeadings.find(
-              (h: { text: string; level: number }) => h.level === 2
-            )?.text ||
-            headingContext.find(
-              (h: { text: string; level: number }) => h.level === 2
-            )?.text ||
-            "";
 
           let url = "";
           if (item.generated_metadata?.path) {
