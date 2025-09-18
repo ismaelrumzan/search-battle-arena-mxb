@@ -151,6 +151,7 @@ export class LLMService {
         prompt,
         temperature: 0.0,
       });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       text = (result as any)?.text || "";
     } catch (err) {
       console.log("err", err);
