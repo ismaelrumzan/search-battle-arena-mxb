@@ -248,8 +248,8 @@ export class LLMService {
   }
   private computeMetrics(scores: number[], pooled: number[]) {
     return {
-      // ndcg5: this.ndcgAt(scores, pooled, 5),
-      // ndcg10: this.ndcgAt(scores, pooled, 10),
+      ndcg5: this.ndcgAt(scores, pooled, 5),
+      ndcg10: this.ndcgAt(scores, pooled, 10),
       nEU: this.expectedUtilityOutOf10(scores, LLMService.EU_ALPHA, LLMService.EVAL_DEPTH),
     };
   }
